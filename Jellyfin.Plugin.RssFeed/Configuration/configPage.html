@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RSS_feed</title>
+</head>
+<body>
+    <div id="RssFeedConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button">
+        <div data-role="content">
+            <div class="content-primary">
+                <form id="RssFeedConfigForm">
+                    <div class="verticalSection verticalSection-extrabottompadding">
+                        <h2 class="sectionTitle">RSS_feed Settings</h2>
+
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="RssAddress">RSS address</label>
+                            <input id="RssAddress" name="RssAddress" type="text" is="emby-input" />
+                        </div>
+
+                        <div>
+                            <button is="emby-button" type="submit" class="raised button-submit block emby-button">
+                                <span>Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var RssFeedConfig = {
+                pluginUniqueId: '24a6de8a-3da4-4ab8-860b-efe9866b569b'
+            };
+
+            document.querySelector('#RssFeedConfigPage')
+                .addEventListener('pageshow', function() {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(RssFeedConfig.pluginUniqueId).then(function(config) {
+                        document.querySelector('#RssAddress').value = config.RssAddress || '';
+                        Dashboard.hideLoadingMsg();
+                    });
+                });
+
+            document.querySelector('#RssFeedConfigForm')
+                .addEventListener('submit', function(e) {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(RssFeedConfig.pluginUniqueId).then(function(config) {
+                        config.RssAddress = document.querySelector('#RssAddress').value;
+                        ApiClient.updatePluginConfiguration(RssFeedConfig.pluginUniqueId, config).then(function(result) {
+                            Dashboard.processPluginConfigurationUpdateResult(result);
+                        });
+                    });
+
+                    e.preventDefault();
+                    return false;
+                });
+        </script>
+    </div>
+</body>
+</html>

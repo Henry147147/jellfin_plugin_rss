@@ -1,17 +1,16 @@
 ---
-name: "Hello World"
-guid: "2d1ca7eb-728e-47ea-a610-3c0386b27185"
+name: "RSS_feed"
+guid: "24a6de8a-3da4-4ab8-860b-efe9866b569b"
 version: "0.1.0.0"
 targetAbi: "10.11.0.0"
 framework: "net9.0"
-overview: "A minimal Jellyfin hello-world plugin."
+overview: "A minimal Jellyfin plugin that stores an RSS address."
 description: >
-  A minimal plugin scaffold based on the Jellyfin plugin template. It adds a
-  plugin entry and serves a simple configuration page that confirms the plugin
-  loaded successfully.
+  A minimal Jellyfin plugin that adds a settings page with a single RSS
+  address field and persists that value in plugin configuration.
 category: "General"
 owner: "henry"
 artifacts:
-  - "Jellyfin.Plugin.HelloWorld.dll"
+  - "Jellyfin.Plugin.RssFeed.dll"
 changelog: >
-  Initial hello-world plugin scaffold.
+  Rename the plugin to RSS_feed and add a persisted RSS address setting.

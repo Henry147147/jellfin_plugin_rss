@@ -1,0 +1,17 @@
+---
+name: "Hello World"
+guid: "2d1ca7eb-728e-47ea-a610-3c0386b27185"
+version: "0.1.0.0"
+targetAbi: "10.11.0.0"
+framework: "net9.0"
+overview: "A minimal Jellyfin hello-world plugin."
+description: >
+  A minimal plugin scaffold based on the Jellyfin plugin template. It adds a
+  plugin entry and serves a simple configuration page that confirms the plugin
+  loaded successfully.
+category: "General"
+owner: "henry"
+artifacts:
+  - "Jellyfin.Plugin.HelloWorld.dll"
+changelog: >
+  Initial hello-world plugin scaffold.
